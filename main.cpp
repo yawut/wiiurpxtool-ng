@@ -4,9 +4,9 @@
 #include <cstring>
 
 int main(int argc, char** argv) {
-	if(argc < 4)
+	if(argc < 3)
 	{
-		printf("wiiurpxtool - version:1.3\n");
+		printf("wiiurpxtool-ng - version " VERSION "\n");
 		printf("Compress or decompress RPL/RPX files for Wii U\n\n");
 		printf("Usage:\n");
 		printf("decompress:\n");
@@ -17,22 +17,22 @@ int main(int argc, char** argv) {
 	}
 
 	std::ifstream infile(argv[2], std::ios::binary);
-	auto elf_o = readrpx(infile);
-	if (!elf_o) {
+	auto rpx_o = rpx::readrpx(infile);
+	if (!rpx_o) {
 		printf("Couldn't parse input file!\n");
 		return -1;
 	}
-	auto elf = *elf_o;
+	rpx::rpx rpx = *rpx_o;
 
-	std::ofstream outfile(argv[3], std::ios::binary);
+	std::ofstream outfile((argc == 3) ? argv[2] : argv[3], std::ios::binary);
 	if (strcmp("-d", argv[1]) == 0) {
 		printf("decompressing...\n");
-		decompress(elf);
-		writerpx(elf, outfile);
+		rpx::decompress(rpx);
+		rpx::writerpx(rpx, outfile);
 	} else if (strcmp("-c", argv[1]) == 0) {
 		printf("compressing...\n");
-		compress(elf);
-		writerpx(elf, outfile);
+		rpx::compress(rpx);
+		rpx::writerpx(rpx, outfile);
 	} else {
 		printf("invalid operation\n");
 		return -1;
