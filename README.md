@@ -5,7 +5,6 @@ Rewrite of [wiiurpxtool](https://github.com/0CBH0/wiiurpxtool) using the
 # Dependencies
 - zlib
 - A C++20 capable compiler
-- Applications using the library need to be built with C++17 or newer
 
 # Credits
 - Hykem (documentation and research of the RPL/RPX format)
