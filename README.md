@@ -1,8 +1,6 @@
-# wiiurpxtool
-Rewrite of [wiiurpxtool](https://github.com/0CBH0/wiiurpxtool) that works as a
-library, using modern C++. Also allows library users to access the in-memory
-representation of the RPX file, allowing it to be read and modified without
-writing a decompressed file back to disk first.
+# wiiurpxtool-ng
+Rewrite of [wiiurpxtool](https://github.com/0CBH0/wiiurpxtool) using the
+[wiiurpxlib](https://github.com/yawut/wiiurpxlib) library.
 
 # Dependencies
 - zlib
